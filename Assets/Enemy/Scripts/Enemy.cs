@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
         {
 
             hp -= collision.gameObject.GetComponent<Bullet>().damage;
+            GetComponent<EntityMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;
+            GetComponent<EntityMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;
             Destroy(collision.gameObject);
             if (hp <= 0) Destroy(gameObject);
         }

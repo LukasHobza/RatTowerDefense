@@ -8,7 +8,8 @@ public class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     public Rigidbody2D rb;
-    private int coolDown = 0;
+    private int coolDownNum = 0;
+    public int coolDown;
 
     void FixedUpdate()
     {
@@ -26,14 +27,14 @@ public class Tower : MonoBehaviour
                     Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
                     rb.MoveRotation(targetRotation);
 
-                    if (coolDown <= 0)
+                    if (coolDownNum <= 0)
                     {
                         GameObject bulletToSpawn = bullet;
                         bulletToSpawn.GetComponent<Bullet>().target = go.transform;
                         Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
-                        coolDown = 100;
+                        coolDownNum = coolDown;
                     }
-                    else coolDown--;
+                    else coolDownNum--;
                     break;
                 }
             }

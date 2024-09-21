@@ -7,12 +7,17 @@ public class EntityMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     private int pathIndex = 0;
-    public float speed = 0.1f;
+    public int speed;
     private Vector3 direction;
     private Transform path;
+    private int newSpeed;
+
+    public int slowPower ;
+    public int slowDuration;
 
     private void Start()
     {
+        slowPower = 1;
         rb.SetRotation(0);
         SetPath();
     }
@@ -32,8 +37,19 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        print(slowDuration);
+        if(slowDuration > 0)
+        {
+            slowDuration--;
+            newSpeed = speed / slowPower;
+        }
+        else
+        {
+            newSpeed = speed;
+        }
+        
         direction = (path.position - transform.position).normalized;
-        rb.velocity = direction * speed * Time.deltaTime;
+        rb.velocity = direction * newSpeed * Time.deltaTime;
 
         Vector3 targetForwardDirection = rb.velocity;
         Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
