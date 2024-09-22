@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     public Transform target;
     private int hp = 20;
+    public bool active = true;
 
     public int damage;
     public int slowPower;

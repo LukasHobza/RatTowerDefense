@@ -173,4 +173,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5454617278818064110, guid: 78f5c1bd663dd8a4bb4fb59dc82aa8fc, type: 3}
   rb: {fileID: 5502174604590041465}
-  coolDown: 50
+  coolDown: 90
+  range: 5

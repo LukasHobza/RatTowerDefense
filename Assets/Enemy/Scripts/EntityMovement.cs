@@ -37,7 +37,7 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print(slowDuration);
+        //print(slowDuration);
         if(slowDuration > 0)
         {
             slowDuration--;

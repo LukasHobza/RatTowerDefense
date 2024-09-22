@@ -10,6 +10,7 @@ public class Tower : MonoBehaviour
     public Rigidbody2D rb;
     private int coolDownNum = 0;
     public int coolDown;
+    public int range;
 
     void FixedUpdate()
     {
@@ -19,7 +20,7 @@ public class Tower : MonoBehaviour
         {
             if (go != null)
             {
-                if (Vector2.Distance(go.transform.position, rb.transform.position) <= 5)
+                if (Vector2.Distance(go.transform.position, rb.transform.position) <= range)
                 {
                     Vector2 direction = (go.GetComponent<EntityMovement>().rb.transform.position - transform.position).normalized;
 
