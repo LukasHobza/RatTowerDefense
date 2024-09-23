@@ -6079,6 +6079,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb110d7eb9aea6b4698ea54de83e21ca, type: 3}
+--- !u!1001 &1338730055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4506952514053077334, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_Name
+      value: DefTower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.22454
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.355172
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f973f937d38c01340917cf09c0371026, type: 3}
 --- !u!1 &1411205470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,13 +6487,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefTower
       objectReference: {fileID: 0}
+    - target: {fileID: 5346097508655933285, guid: f973f937d38c01340917cf09c0371026, type: 3}
+      propertyPath: coolDown
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4678369
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.086247
+      value: 3.34
       objectReference: {fileID: 0}
     - target: {fileID: 7186150817049107528, guid: f973f937d38c01340917cf09c0371026, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6645,6 +6706,12 @@ MonoBehaviour:
   enemy:
   - {fileID: 462159741229335265, guid: c2b271405ddf5454498ed52772613522, type: 3}
   - {fileID: 462159741229335265, guid: 62177083a812a8c488973b8720adc738, type: 3}
+  - {fileID: 462159741229335265, guid: 921130920104e6a419f890f3c321ddb4, type: 3}
+  - {fileID: 462159741229335265, guid: 0169b58b84b64f94fbe98baae62faf03, type: 3}
+  - {fileID: 462159741229335265, guid: c74ad559cc043b0448594c0b78b64f24, type: 3}
+  - {fileID: 462159741229335265, guid: d9e2871a00b926946882361cd2ffc920, type: 3}
+  - {fileID: 462159741229335265, guid: 915a53cacb00c1940b526385eae0328d, type: 3}
+  - {fileID: 462159741229335265, guid: 7e09afc771d977b4c9fc94986d8ffb58, type: 3}
   wave: 1
 --- !u!4 &2114885221
 Transform:
@@ -6671,3 +6738,4 @@ SceneRoots:
   - {fileID: 1418760404}
   - {fileID: 1948346144}
   - {fileID: 1330796541}
+  - {fileID: 1338730055}

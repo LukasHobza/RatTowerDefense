@@ -14,8 +14,9 @@ public class EnemySpawner : MonoBehaviour
     private int enemyInCurWave = 0;
     private int randomNum;
 
-    private int[] wave0 = {0,0,1,0,0,0};
-    private int[] wave1 = {0,1,0,1,0};
+    private int[] wave0 = {1,1,1,1};
+    private int[] wave1 = {7,7,7,7,7};
+    private int[] wave2 = {0,0,1,1,2,2,3,3};
     private int index = 0;
 
     private void Update()
@@ -30,12 +31,13 @@ public class EnemySpawner : MonoBehaviour
             switch (wave)
             {
                 case 1:
-                    waveSettings(0.9f,wave0.Length, wave0[index]);
+                    waveSettings(1.9f,wave0.Length, wave0[index]);
                     break;
                 case 2:
-                    waveSettings(0.5f, wave1.Length, wave1[index]);
+                    waveSettings(1.5f, wave1.Length, wave1[index]);
                     break;
                 case 3:
+                    waveSettings(1.9f, wave2.Length, wave2[index]);
                     break;
                 case 4:
                     break;

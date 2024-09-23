@@ -31,6 +31,7 @@ public class Tower : MonoBehaviour
                     if (coolDownNum <= 0)
                     {
                         GameObject bulletToSpawn = bullet;
+                        bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
                         bulletToSpawn.GetComponent<Bullet>().target = go.transform;
                         Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
                         coolDownNum = coolDown;
