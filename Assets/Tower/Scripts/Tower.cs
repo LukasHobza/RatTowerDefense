@@ -22,10 +22,11 @@ public class Tower : MonoBehaviour
             {
                 if (Vector2.Distance(go.transform.position, rb.transform.position) <= range)
                 {
-                    Vector2 direction = (go.GetComponent<EntityMovement>().rb.transform.position - transform.position).normalized;
+                    Vector2 direction = (go.GetComponent<EntityMovement>().rb.transform.position - transform.position);
 
                     Vector3 targetForwardDirection = direction;
                     Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
+                    if(targetRotation.y > 0.5f)targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;
                     rb.MoveRotation(targetRotation);
 
                     if (coolDownNum <= 0)

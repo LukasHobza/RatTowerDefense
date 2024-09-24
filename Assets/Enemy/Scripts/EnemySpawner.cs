@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemyInCurWave = 0;
     private int randomNum;
 
-    private int[] wave0 = {1,1,1,1};
+    private int[] wave0 = {7,1,2,3,1,2,3};
     private int[] wave1 = {7,7,7,7,7};
     private int[] wave2 = {0,0,1,1,2,2,3,3};
     private int index = 0;
