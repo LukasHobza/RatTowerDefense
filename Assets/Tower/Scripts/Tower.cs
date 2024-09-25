@@ -11,36 +11,45 @@ public class Tower : MonoBehaviour
     private int coolDownNum = 0;
     public int coolDown;
     public int range;
+    private GameObject targetEnemy;
 
     void FixedUpdate()
     {
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 
-        foreach (GameObject go in enemyList)
+        if(targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= range)
         {
-            if (go != null)
+            foreach (GameObject enemyInList in enemyList)
             {
-                if (Vector2.Distance(go.transform.position, rb.transform.position) <= range)
+                print("a");
+                if (enemyInList != null)
                 {
-                    Vector2 direction = (go.GetComponent<EntityMovement>().rb.transform.position - transform.position);
-
-                    Vector3 targetForwardDirection = direction;
-                    Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
-                    if(targetRotation.y > 0.5f)targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;
-                    rb.MoveRotation(targetRotation);
-
-                    if (coolDownNum <= 0)
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range)
                     {
-                        GameObject bulletToSpawn = bullet;
-                        bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
-                        bulletToSpawn.GetComponent<Bullet>().target = go.transform;
-                        Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
-                        coolDownNum = coolDown;
+                        targetEnemy = enemyInList;
+                        break;
                     }
-                    else coolDownNum--;
-                    break;
                 }
             }
         }
+        else
+        {
+            Vector2 direction = (targetEnemy.GetComponent<EntityMovement>().rb.transform.position - transform.position);
+            Vector3 targetForwardDirection = direction;
+            Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
+            if (targetRotation.y > 0.5f) targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;
+            rb.MoveRotation(targetRotation);
+
+            if (coolDownNum <= 0)
+            {
+                GameObject bulletToSpawn = bullet;
+                bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
+                bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;
+                Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
+                coolDownNum = coolDown;
+            }
+            else coolDownNum--;
+        }
+        
     }
 }
