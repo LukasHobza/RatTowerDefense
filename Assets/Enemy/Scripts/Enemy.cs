@@ -13,38 +13,37 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        if(isArmored) 
+        if(isArmored)//pokud ma enemak armor
         {
-            armor = this.transform.GetChild(0).gameObject;
+            armor = this.transform.GetChild(0).gameObject;//prirazeni objektu armor
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "bullet" && collision.GetComponent<Bullet>().active)
+        if (collision.gameObject.tag == "bullet" && collision.GetComponent<Bullet>().active)//kolize nemaka se strelou
         {
-            if(isArmored)
+            if(isArmored)//pro armorovaneho enemaka
             {
-                if (armorHp > 0)
+                if (armorHp > 0)//odebrani armoru
                 {
                     armorHp -= collision.gameObject.GetComponent<Bullet>().armorDamage;
                 }
                 else if (armorHp <= 0)
                 {
-                    Destroy(armor);
+                    Destroy(armor);//mazanio armoru
                     isArmored = false;
                 }
             }
             else
             {
-                hp -= collision.gameObject.GetComponent<Bullet>().damage;
+                hp -= collision.gameObject.GetComponent<Bullet>().damage;//odebrani hp enema
             }
-            collision.GetComponent<Bullet>().active = false;
-            GetComponent<EntityMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;
-            GetComponent<EntityMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;
-            Destroy(collision.gameObject);
-            //print("Hp:" + hp + ", ArmorHp:" + armorHp);
-            if (hp <= 0) Destroy(gameObject);
+            collision.GetComponent<Bullet>().active = false;//aby strela davala damage jen jednou mam pocit ze to funguje xd 
+            GetComponent<EntityMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;//zpomaleni enemaka
+            GetComponent<EntityMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;//zpomaleni enemaka
+            Destroy(collision.gameObject);//zniceni kulky
+            if (hp <= 0) Destroy(gameObject);//zniceni enemaka
         }
     }
 }

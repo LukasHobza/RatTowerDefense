@@ -20,15 +20,15 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        direction = (target.position - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
-        rb.MoveRotation(targetRotation);
+        direction = (target.position - transform.position).normalized;//zjisteni smeru letu
+        Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);//zjisteni uhlu
+        rb.MoveRotation(targetRotation);//nastavi otoceni pro strelu
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + direction * Time.deltaTime * speed);
-        hp--;
-        if(hp <= 0)Destroy(gameObject);
+        rb.MovePosition(transform.position + direction * Time.deltaTime * speed);//pohyb strelou
+        hp--;//odebrani hp strely
+        if(hp <= 0)Destroy(gameObject);//zniceni strely kdyz ma 0 hp
     }
 }

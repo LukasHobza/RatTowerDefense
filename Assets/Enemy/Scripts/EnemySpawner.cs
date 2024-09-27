@@ -12,8 +12,8 @@ public class EnemySpawner : MonoBehaviour
     public int wave = 1;
     private int enemyToSpawn;
     private int enemyInCurWave = 0;
-    private int randomNum;
 
+    //pole kde jsou enemyci co se budou spawnovat v urcitych vlnach
     private int[] wave0 = {1,2,3,4,5,6,7};
     private int[] wave1 = {7,7,7,7,7};
     private int[] wave2 = {0,0,1,1,2,2,3,3};
@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (waveDelay < 5f)
+        if (waveDelay < 5f)//mezera mezi vlnaka
         {
             waveDelay += Time.deltaTime;
         }
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
             switch (wave)
             {
                 case 1:
-                    waveSettings(0.9f,wave0.Length, wave0[index]);
+                    waveSettings(0.9f,wave0.Length, wave0[index]);//spawnuti vlny
                     break;
                 case 2:
                     waveSettings(1.5f, wave1.Length, wave1[index]);
@@ -40,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
                     waveSettings(1.9f, wave2.Length, wave2[index]);
                     break;
                 case 4:
+                    //
                     break;
                 case 5:
                     break;
@@ -49,21 +50,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(int enemyNum)
     {
-        GameObject spawn = enemy[enemyNum];
-        Instantiate(spawn, this.transform.position, Quaternion.identity);
+        GameObject spawn = enemy[enemyNum];//nastaveni enemaka ktery se spawne
+        Instantiate(spawn, this.transform.position, Quaternion.identity);//spawnuti enemaka
     }
 
     private void waveSettings(float enemySpawnDelay, int numberOfEnemyInWave, int typeOfEnemy)
     {
-        if (lastSpawnTime >= enemySpawnDelay)
+        if (lastSpawnTime >= enemySpawnDelay)//zdrzeni mezi enemaky ve vlne
         {
-
-            enemyToSpawn = typeOfEnemy;
+            enemyToSpawn = typeOfEnemy;//ktery enemy se bude spawnovat
             lastSpawnTime = 0f;
-            SpawnEnemy(enemyToSpawn);
+            SpawnEnemy(enemyToSpawn);//spawne enemaka
             index++;
             enemyInCurWave++;
-            if (enemyInCurWave >= numberOfEnemyInWave)
+            if (enemyInCurWave >= numberOfEnemyInWave)//konec vlny
             {
                 wave++;
                 waveDelay = 0f;

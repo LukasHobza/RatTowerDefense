@@ -18,17 +18,17 @@ public class EntityMovement : MonoBehaviour
     private void Start()
     {
         slowPower = 1;
-        rb.SetRotation(0);
-        SetPath();
+        rb.SetRotation(0);//to tu asi nemusi byt
+        SetPath();//nastaveni prvniho bodu cesty enemaka
     }
 
     private void Update()
     {
-        if(Vector2.Distance(path.position, transform.position) <= 0.5f){
+        if(Vector2.Distance(path.position, transform.position) <= 0.5f){//nastaveni dalsiho bodu enemaka
             pathIndex++;
             if(pathIndex >= PathHolder.pH.path.Length)
             {
-                Destroy(gameObject);
+                Destroy(gameObject);//spazani enemaka pokud je na konci cesty
                 return;
             }
             SetPath();
@@ -37,7 +37,7 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(slowDuration > 0)
+        if(slowDuration > 0)//zpomaleni enemaka
         {
             slowDuration--;
             newSpeed = speed / slowPower;
@@ -47,16 +47,16 @@ public class EntityMovement : MonoBehaviour
             newSpeed = speed;
         }
         
-        direction = (path.position - transform.position).normalized;
-        rb.velocity = direction * newSpeed * Time.deltaTime;
+        direction = (path.position - transform.position).normalized;//zjisteni smeru pohybu enemaka
+        rb.velocity = direction * newSpeed * Time.deltaTime;//pohyb enemaka
 
         Vector3 targetForwardDirection = rb.velocity;
         Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
-        rb.MoveRotation(targetRotation);
+        rb.MoveRotation(targetRotation);//nastaveni rotace enemaka
     }
 
     private void SetPath()
     {
-        path = PathHolder.pH.path[pathIndex];
+        path = PathHolder.pH.path[pathIndex];//nastaveni cesty
     }
 }
