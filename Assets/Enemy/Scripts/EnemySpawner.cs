@@ -31,10 +31,10 @@ public class EnemySpawner : MonoBehaviour
             switch (wave)
             {
                 case 1:
-                    waveSettings(0.9f,wave0.Length, wave0[index]);//spawnuti vlny
+                    waveSettings(1.9f,wave0.Length, wave0[index]);//spawnuti vlny
                     break;
                 case 2:
-                    waveSettings(1.5f, wave1.Length, wave1[index]);
+                    waveSettings(1.1f, wave1.Length, wave1[index]);
                     break;
                 case 3:
                     waveSettings(1.9f, wave2.Length, wave2[index]);

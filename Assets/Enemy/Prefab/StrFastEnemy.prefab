@@ -188,4 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ddd43d95c65d3a4795fd7f2f2350e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armor: {fileID: 0}
   hp: 200
+  armorHp: 0
+  isArmored: 0
+  coinReward: 7

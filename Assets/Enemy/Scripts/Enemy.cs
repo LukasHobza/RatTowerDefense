@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public int hp;
     public int armorHp;
     public bool isArmored;
+    public int coinReward;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -43,7 +45,12 @@ public class Enemy : MonoBehaviour
             GetComponent<EntityMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;//zpomaleni enemaka
             GetComponent<EntityMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;//zpomaleni enemaka
             Destroy(collision.gameObject);//zniceni kulky
-            if (hp <= 0) Destroy(gameObject);//zniceni enemaka
+            if (hp <= 0 && !isDead)
+            {
+                isDead = true;
+                CoinManager.cM.coin += coinReward;
+                Destroy(gameObject);//zniceni enemaka
+            }
         }
     }
 }

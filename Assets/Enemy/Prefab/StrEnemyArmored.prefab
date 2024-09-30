@@ -193,6 +193,7 @@ MonoBehaviour:
   hp: 200
   armorHp: 100
   isArmored: 1
+  coinReward: 9
 --- !u!1 &1708534125287416436
 GameObject:
   m_ObjectHideFlags: 0
