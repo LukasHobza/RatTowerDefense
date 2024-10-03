@@ -49,9 +49,10 @@ public class EntityMovement : MonoBehaviour
         
         direction = (path.position - transform.position).normalized;//zjisteni smeru pohybu enemaka
         rb.velocity = direction * newSpeed * Time.deltaTime;//pohyb enemaka
-
+        
         Vector3 targetForwardDirection = rb.velocity;
         Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
+        if (targetRotation.y > 0.5f) targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;//oprava divne rotace xd
         rb.MoveRotation(targetRotation);//nastaveni rotace enemaka
     }
 
