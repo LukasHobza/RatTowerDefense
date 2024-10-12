@@ -33,7 +33,7 @@ public class Tower : MonoBehaviour
         }
         else
         {
-            Vector2 direction = (targetEnemy.GetComponent<EntityMovement>().rb.transform.position - transform.position);//zjisteni rotace pro vez
+            Vector2 direction = (targetEnemy.GetComponent<EnemyMovement>().rb.transform.position - transform.position);//zjisteni rotace pro vez
             Vector3 targetForwardDirection = direction;
             Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
             if (targetRotation.y > 0.5f) targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;//oprava divne rotace xd
@@ -46,6 +46,7 @@ public class Tower : MonoBehaviour
                 bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;//nastaveni veci pro budouci strely
                 Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);//spawn strely
                 coolDownNum = coolDown;//nastaveni casovace
+
             }
             else coolDownNum--;
         }

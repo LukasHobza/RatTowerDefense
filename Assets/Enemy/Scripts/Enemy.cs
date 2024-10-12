@@ -42,8 +42,8 @@ public class Enemy : MonoBehaviour
                 hp -= collision.gameObject.GetComponent<Bullet>().damage;//odebrani hp enema
             }
             collision.GetComponent<Bullet>().active = false;//aby strela davala damage jen jednou mam pocit ze to funguje xd 
-            GetComponent<EntityMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;//zpomaleni enemaka
-            GetComponent<EntityMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;//zpomaleni enemaka
+            GetComponent<EnemyMovement>().slowPower = collision.GetComponent<Bullet>().slowPower;//zpomaleni enemaka
+            GetComponent<EnemyMovement>().slowDuration = collision.GetComponent<Bullet>().slowDuration;//zpomaleni enemaka
             Destroy(collision.gameObject);//zniceni kulky
             if (hp <= 0 && !isDead)
             {

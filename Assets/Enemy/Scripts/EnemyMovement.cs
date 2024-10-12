@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     private int pathIndex = 0;
     public int speed;
     private Vector3 direction;
     private Transform path;
-    private int newSpeed;
+    private float newSpeed;
 
     public int slowPower ;
     public int slowDuration;
+
+    public int freezeDuration;
 
     private void Start()
     {
@@ -37,7 +39,13 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(slowDuration > 0)//zpomaleni enemaka
+        print(freezeDuration);
+        if(freezeDuration > 0)
+        {
+            freezeDuration--;
+            newSpeed = 0.1f;
+        }
+        else if(slowDuration > 0)//zpomaleni enemaka
         {
             slowDuration--;
             newSpeed = speed / slowPower;
