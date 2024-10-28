@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7725810717145048123}
   - component: {fileID: 3120355258868016457}
   m_Layer: 1
-  m_Name: DefBullet
+  m_Name: Bullet
   m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,9 @@ MonoBehaviour:
   target: {fileID: 0}
   active: 1
   targetForwardDirection: {x: -0.23415823, y: 0.12760904, z: 0}
-  damage: 100
-  armorDamage: 30
+  type: 0
+  damage: 0
+  armorDamage: 0
   slowPower: 0
   slowDuration: 0
+  rangeDamage: 0

@@ -14,7 +14,8 @@ public class EnemySpawner : MonoBehaviour
     private int enemyInCurWave = 0;
 
     //pole kde jsou enemyci co se budou spawnovat v urcitych vlnach
-    private int[] wave0 = {0,1,1,0,0,0,1};
+    //private int[] wave0 = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+    private int[] wave0 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int[] wave1 = {7,7,7,7,7};
     private int[] wave2 = {0,0,1,1,2,2,3,3};
     private int index = 0;
@@ -31,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
             switch (wave)
             {
                 case 1:
-                    waveSettings(1.5f,wave0.Length, wave0[index]);//spawnuti vlny
+                    waveSettings(0.5f,wave0.Length, wave0[index]);//spawnuti vlny
                     break;
                 case 2:
                     waveSettings(1.1f, wave1.Length, wave1[index]);

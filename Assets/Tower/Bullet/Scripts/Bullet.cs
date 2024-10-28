@@ -17,12 +17,15 @@ public class Bullet : MonoBehaviour
     public int armorDamage;
     public int slowPower;
     public int slowDuration;
+    public int rangeDamage;
 
     private void Start()
     {
         direction = (target.position - transform.position).normalized;//zjisteni smeru letu
         Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);//zjisteni uhlu
         rb.MoveRotation(targetRotation);//nastavi otoceni pro strelu
+
+
     }
 
     private void FixedUpdate()

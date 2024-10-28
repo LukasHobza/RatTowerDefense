@@ -176,6 +176,7 @@ MonoBehaviour:
   speed: 100
   slowPower: 0
   slowDuration: 0
+  freezeDuration: 0
 --- !u!114 &8065495896370103461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ddd43d95c65d3a4795fd7f2f2350e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 89237060235249440}
   armor: {fileID: 0}
   hp: 200
   armorHp: 0

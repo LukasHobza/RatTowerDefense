@@ -12,6 +12,13 @@ public class Tower : MonoBehaviour
     public int coolDown;
     public int range;
     private GameObject targetEnemy;
+    public int type;
+
+    public int damage;
+    public int armorDamage;
+    public int slowPower;
+    public int slowDuration;
+    public int rangeDamage;
 
     void FixedUpdate()
     {
@@ -45,6 +52,13 @@ public class Tower : MonoBehaviour
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;//nastaveni veci pro budouci strely
                 bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;//nastaveni veci pro budouci strely
                 Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);//spawn strely
+
+                bulletToSpawn.GetComponent<Bullet>().damage = damage;
+                bulletToSpawn.GetComponent<Bullet>().armorDamage = armorDamage;
+                bulletToSpawn.GetComponent<Bullet>().slowPower = slowPower;
+                bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
+                bulletToSpawn.GetComponent<Bullet>().rangeDamage = rangeDamage;
+
                 coolDownNum = coolDown;//nastaveni casovace
 
             }

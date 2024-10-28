@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0947089d8d20a3a4fa15a0251946a793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 5454617278818064110, guid: b646a2b84e621e84dbc02b32b2c32079, type: 3}
   rb: {fileID: 5502174604590041465}
   coolDown: 150
   range: 5

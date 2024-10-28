@@ -150,7 +150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,7 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda8751359542844dad92661aefe875b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5454617278818064110, guid: 78f5c1bd663dd8a4bb4fb59dc82aa8fc, type: 3}
+  bullet: {fileID: 5454617278818064110, guid: b646a2b84e621e84dbc02b32b2c32079, type: 3}
   rb: {fileID: 5502174604590041465}
   coolDown: 90
   range: 5
+  type: 2
+  damage: 0
+  armorDamage: 0
+  slowPower: 2
+  slowDuration: 90
+  rangeDamage: 0
