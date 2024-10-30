@@ -1,17 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class FreezeTower : MonoBehaviour
+public class RadarTower : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
+    public Sprite sprite;
     public Rigidbody2D rb;
     private int coolDownNum = 0;
     public int coolDown;
     public int range;
-    public int freezeDuration;
     private GameObject targetEnemy;
 
     void FixedUpdate()
@@ -25,10 +23,11 @@ public class FreezeTower : MonoBehaviour
                 {
                     if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range)//kdyz je nemy blizko veze
                     {
-                        if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
+                        targetEnemy = enemyInList;//priradi noveho target enemaka
+                        if (targetEnemy.gameObject.GetComponent<Enemy>().isInvisible)
                         {
-                            targetEnemy = enemyInList;//priradi noveho target enemaka
-                            targetEnemy.GetComponent<EnemyMovement>().freezeDuration = freezeDuration;
+                            targetEnemy.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+                            targetEnemy.gameObject.GetComponent<Enemy>().isInvisible = false;
                         }
                     }
                 }
@@ -39,6 +38,6 @@ public class FreezeTower : MonoBehaviour
         {
             coolDownNum--;
         }
-        
+
     }
 }

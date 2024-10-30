@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public bool isArmored;
     public int coinReward;
     private bool isDead = false;
+    public bool isInvisible = false;
 
     private void Awake()
     {

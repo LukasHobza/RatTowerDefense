@@ -32,8 +32,11 @@ public class Tower : MonoBehaviour
                 {
                     if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range)//kdyz je nemy blizko veze
                     {
-                        targetEnemy = enemyInList;//priradi noveho target enemaka
-                        break;
+                        if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
+                        {
+                            targetEnemy = enemyInList;//priradi noveho target enemaka
+                            break;
+                        }
                     }
                 }
             }
