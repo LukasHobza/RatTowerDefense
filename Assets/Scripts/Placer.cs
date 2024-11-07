@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class TilemapPlacer : MonoBehaviour
 {
-    public Tilemap tilemap; // Reference to your Tilemap
-    public GameObject[] prefabs; // Array of prefabs to instantiate
-    private int currentPrefabIndex = 0; // Index to track the currently selected prefab
+    public Tilemap tilemap; // ref na tilemapu
+    public GameObject[] prefabs;
+    private int currentPrefabIndex = 0; 
 
     void Start()
     {
-        // Set up button listeners
+        // tlacitka :)
         for (int i = 0; i < prefabs.Length; i++)
         {
-            int index = i; // Capture the current index
+            int index = i;
             Button button = GameObject.Find("Button" + (i + 1)).GetComponent<Button>();
             button.onClick.AddListener(() => SelectPrefab(index));
         }
@@ -21,7 +21,7 @@ public class TilemapPlacer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Check for left mouse button click
+        if (Input.GetMouseButtonDown(0)) // ceka na levy kliknuti
         {
             PlacePrefab();
         }
@@ -29,35 +29,35 @@ public class TilemapPlacer : MonoBehaviour
 
     void SelectPrefab(int index)
     {
-        currentPrefabIndex = index; // Set the selected prefab index
+        currentPrefabIndex = index; // nastavi prefab indexem
         Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
     }
 
     void PlacePrefab()
     {
-        // Get the mouse position in world space
+        // zjisti kam se ma polozit
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // Convert the world position to the Tilemap's cell position
+        // zjisti na jakej cell do tilemapy se ma polozit
         Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
 
         if (IsCellOccupied(cellPosition))
         {
-            Debug.Log("Cell is already occupied!");
-            return; // Exit if the cell is occupied
+            Debug.Log("nn nemuzes uz tam neco je :(");
+            return; // exit jestli v cell uz neco je
         }
 
-        // Check if the tilemap cell is empty
+        // hlida jestli je cell prazdny
         if (tilemap.GetTile(cellPosition) == null)
         {
-            // Instantiate the selected prefab at the cell position
+            // da prefab do cell
             Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
         }
     }
 
     bool IsCellOccupied(Vector3Int cellPosition)
     {
-        // Check for any GameObjects in the vicinity of the cell position
+        // zjistuje jestli v cell neco je
         Collider2D[] colliders = Physics2D.OverlapCircleAll(tilemap.GetCellCenterWorld(cellPosition), 0.1f);
-        return colliders.Length > 0; // Return true if there's at least one collider (indicating occupancy)
+        return colliders.Length > 0; // vrati true jestli v cell neco je
     }
 }
