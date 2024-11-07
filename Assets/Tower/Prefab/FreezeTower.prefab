@@ -173,6 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5454617278818064110, guid: b646a2b84e621e84dbc02b32b2c32079, type: 3}
   rb: {fileID: 5502174604590041465}
-  coolDown: 150
+  coolDown: 250
   range: 5
   freezeDuration: 50
