@@ -6,8 +6,9 @@ public class TilemapPlacer : MonoBehaviour
 {
     public Tilemap tilemap; // ref na tilemapu
     public GameObject[] prefabs;
-    private int currentPrefabIndex = 0; 
-
+    private int currentPrefabIndex = 0;
+    public int[] prices;
+    private int indexx;
     void Start()
     {
         // tlacitka :)
@@ -30,6 +31,7 @@ public class TilemapPlacer : MonoBehaviour
     void SelectPrefab(int index)
     {
         currentPrefabIndex = index; // nastavi prefab indexem
+        indexx = index;
         Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
     }
 
@@ -46,11 +48,12 @@ public class TilemapPlacer : MonoBehaviour
             return; // exit jestli v cell uz neco je
         }
 
-        // hlida jestli je cell prazdny
-        if (tilemap.GetTile(cellPosition) == null)
+        // hlida jestli je cell prazdny a jestli ma hrac dost penez
+        if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx])
         {
             // da prefab do cell
             Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
+            CoinManager.cM.coin -= prices[indexx];
         }
     }
 
