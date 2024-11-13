@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject armor;
     public int hp;
+    public int damage;
     public int armorHp;
     public bool isArmored;
     public int coinReward;
