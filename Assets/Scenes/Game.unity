@@ -14571,7 +14571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 103236084}
-  coin: 50
+  coin: 100
 --- !u!114 &1812059687
 MonoBehaviour:
   m_ObjectHideFlags: 0
