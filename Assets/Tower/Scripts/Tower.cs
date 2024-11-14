@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
     public int slowDuration;
     public int rangeDamage;
 
-    [SerializeField] private AudioSource shootSound; // Pøidaná promìnná pro zvukový efekt støelby
+    [SerializeField] private AudioSource shootSound; // Pøidaná promìnnou pro zvukový efekt støelby
 
     void FixedUpdate()
     {
