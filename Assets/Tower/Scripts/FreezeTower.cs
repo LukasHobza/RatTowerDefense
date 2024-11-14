@@ -14,21 +14,29 @@ public class FreezeTower : MonoBehaviour
     public int freezeDuration;
     private GameObject targetEnemy;
 
+    [SerializeField] private AudioSource freezeSound; // Pøidaná promìnná pro zvukový efekt zmrazení
+
     void FixedUpdate()
     {
-        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");//list vsech enemy
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // List všech nepøátel
         if (coolDownNum <= 0)
         {
-            foreach (GameObject enemyInList in enemyList)//projede vsechny enemaky
+            foreach (GameObject enemyInList in enemyList) // Projde všechny nepøátele
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range)//kdyz je nemy blizko veze
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range) // Pokud je nepøítel blízko vìže
                     {
                         if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                         {
-                            targetEnemy = enemyInList;//priradi noveho target enemaka
+                            targetEnemy = enemyInList; // Nastaví nového cílového nepøítele
                             targetEnemy.GetComponent<EnemyMovement>().freezeDuration = freezeDuration;
+
+                            // Pøehraje zvukový efekt zmrazení
+                            if (freezeSound != null)
+                            {
+                                freezeSound.Play();
+                            }
                         }
                     }
                 }
@@ -39,6 +47,5 @@ public class FreezeTower : MonoBehaviour
         {
             coolDownNum--;
         }
-        
     }
 }
