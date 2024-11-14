@@ -193,6 +193,7 @@ MonoBehaviour:
   rb: {fileID: 89237060235249440}
   armor: {fileID: 462159741229335265}
   hp: 100
+  damage: 5
   armorHp: 100
   isArmored: 1
   coinReward: 6
