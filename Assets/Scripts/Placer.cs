@@ -48,8 +48,8 @@ public class TilemapPlacer : MonoBehaviour
             return; // exit jestli v cell uz neco je
         }
 
-        // hlida jestli je cell prazdny a jestli ma hrac dost penez
-        if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx])
+        // hlida jestli je cell prazdny a jestli ma hrac dost penez a neni gameover
+        if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx] && !HpManager.hM.over)
         {
             // da prefab do cell
             Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);

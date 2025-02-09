@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
             if(pathIndex >= PathHolder.pH.path.Length)
             {
                 HpManager.hM.hp -= gameObject.GetComponent<Enemy>().damage;
-                if(HpManager.hM.hp <= 0) SceneManager.LoadScene(sceneName: "Game");
+                //if(HpManager.hM.hp <= 0) SceneManager.LoadScene(sceneName: "Game");
                 Destroy(gameObject);//spazani enemaka pokud je na konci cesty
                 return;
             }

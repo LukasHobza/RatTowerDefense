@@ -14046,7 +14046,7 @@ AudioSource:
   m_Volume: 0.21
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -14585,7 +14585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpText: {fileID: 1688879928}
+  gameOver: {fileID: 5979456167040091472, guid: 30f528f8b292cb7488322d76207ad27a, type: 3}
+  canvas: {fileID: 201871001}
   hp: 100
+  over: 0
 --- !u!1 &1826507442
 GameObject:
   m_ObjectHideFlags: 0
