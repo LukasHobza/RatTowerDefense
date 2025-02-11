@@ -12,6 +12,8 @@ public class RadarTower : MonoBehaviour
     public int range;
     private GameObject targetEnemy;
 
+    [SerializeField] private AudioSource ratdarSound;
+
     void FixedUpdate()
     {
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");//list vsech enemy
@@ -28,6 +30,11 @@ public class RadarTower : MonoBehaviour
                         {
                             targetEnemy.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
                             targetEnemy.gameObject.GetComponent<Enemy>().isInvisible = false;
+
+                            if (ratdarSound != null)
+                            {
+                                ratdarSound.Play();
+                            }
                         }
                     }
                 }
