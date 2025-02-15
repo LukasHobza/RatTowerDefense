@@ -13,7 +13,8 @@ public class FreezeTower : MonoBehaviour
     public int freezeDuration;
     private GameObject targetEnemy;
 
-    public int dorimeCoolDownBoost = 0; 
+    public int dorimeCoolDownBoost = 0;
+    public int dorimeRangeBoost = 0;
 
     [SerializeField] private AudioSource freezeSound; // Pøidaná promìnná pro zvukový efekt zmrazení
 
@@ -26,7 +27,7 @@ public class FreezeTower : MonoBehaviour
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range) // Pokud je nepøítel blízko vìže
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // Pokud je nepøítel blízko vìže
                     {
                         if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                         {

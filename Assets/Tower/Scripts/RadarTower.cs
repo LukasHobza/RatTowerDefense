@@ -11,6 +11,8 @@ public class RadarTower : MonoBehaviour
     public int range;
     private GameObject targetEnemy;
 
+    public int dorimeRangeBoost = 0;
+
     [SerializeField] private AudioSource ratdarSound;
 
     void FixedUpdate()
@@ -22,7 +24,7 @@ public class RadarTower : MonoBehaviour
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range)//kdyz je nemy blizko veze
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))//kdyz je nemy blizko veze
                     {
                         targetEnemy = enemyInList;//priradi noveho target enemaka
                         if (targetEnemy.gameObject.GetComponent<Enemy>().isInvisible)

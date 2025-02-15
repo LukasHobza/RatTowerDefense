@@ -28,10 +28,20 @@ public class DorimeRatManager : MonoBehaviour
                 try
                 {
                     towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost = 0;
+                    towerInList.gameObject.GetComponent<FreezeTower>().dorimeRangeBoost = 0;
                 }
                 catch
                 {
-                    //print("neni to freeze");
+                    
+                }
+
+                try
+                {
+                    towerInList.gameObject.GetComponent<RadarTower>().dorimeRangeBoost = 0;
+                }
+                catch
+                {
+                    
                 }
 
                 try
@@ -42,7 +52,7 @@ public class DorimeRatManager : MonoBehaviour
                 }
                 catch
                 {
-                    //print("je to freeeze");
+                    
                 }
 
 
@@ -53,11 +63,21 @@ public class DorimeRatManager : MonoBehaviour
                         try
                         {
                             towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().coolDownBoost;
+                            towerInList.gameObject.GetComponent<FreezeTower>().dorimeRangeBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().rangeBoost;
                             if (towerInList.gameObject.GetComponent<FreezeTower>().coolDown - towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost < towerMinCooldown) towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost = towerInList.gameObject.GetComponent<FreezeTower>().coolDown - towerMinCooldown;
                         }
                         catch
                         {
-                            //print("neni to freeze");
+                            
+                        }
+
+                        try
+                        {
+                            towerInList.gameObject.GetComponent<RadarTower>().dorimeRangeBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().rangeBoost;
+                        }
+                        catch
+                        {
+                            
                         }
 
                         try
@@ -69,7 +89,7 @@ public class DorimeRatManager : MonoBehaviour
                         }
                         catch
                         {
-                            //print("je to freeeze");
+                            
                         }
                     }
                 }
