@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3960238512088120009}
   m_Layer: 0
   m_Name: FreezeTower
-  m_TagString: Untagged
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0947089d8d20a3a4fa15a0251946a793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5454617278818064110, guid: b646a2b84e621e84dbc02b32b2c32079, type: 3}
   rb: {fileID: 5502174604590041465}
   coolDown: 250
   range: 5

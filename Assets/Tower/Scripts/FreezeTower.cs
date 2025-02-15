@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class FreezeTower : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
     public Rigidbody2D rb;
     private int coolDownNum = 0;
     public int coolDown;
     public int range;
     public int freezeDuration;
     private GameObject targetEnemy;
+
+    public int dorimeCoolDownBoost = 0; 
 
     [SerializeField] private AudioSource freezeSound; // Pøidaná promìnná pro zvukový efekt zmrazení
 
@@ -41,7 +42,7 @@ public class FreezeTower : MonoBehaviour
                     }
                 }
             }
-            coolDownNum = coolDown;
+            coolDownNum = coolDown - dorimeCoolDownBoost;
         }
         else
         {

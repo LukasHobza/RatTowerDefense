@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6043175994226853664}
   m_Layer: 0
   m_Name: SlowTower
-  m_TagString: Untagged
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RadarTower : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
     public Sprite sprite;
     public Rigidbody2D rb;
     private int coolDownNum = 0;

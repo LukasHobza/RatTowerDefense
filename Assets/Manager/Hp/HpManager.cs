@@ -21,11 +21,10 @@ public class HpManager : MonoBehaviour
     private void Update()
     {
         hpText.text = hp.ToString();
-        if(hp<0 && !over)
+        if(hp<=0 && !over)
         {
             over = true;
             Instantiate(gameOver);
-            canvas.SetActive(false);
         }
     }
 }

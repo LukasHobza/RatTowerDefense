@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print(freezeDuration);
+        //print(freezeDuration);
         if(freezeDuration > 0)
         {
             freezeDuration--;

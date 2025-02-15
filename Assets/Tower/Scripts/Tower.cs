@@ -20,6 +20,10 @@ public class Tower : MonoBehaviour
     public int slowDuration;
     public int rangeDamage;
 
+    public int dorimeCoolDownBoost = 0;
+    public int dorimeRangeBoost = 0;
+    public int dorimeDamageBoost = 0;
+
     [SerializeField] private AudioSource shootSound; // Pøidaná promìnnou pro zvukový efekt støelby
 
     void FixedUpdate()
@@ -27,13 +31,13 @@ public class Tower : MonoBehaviour
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // list všech enemy
 
         // Pokud vìž nemá target, najde si nového
-        if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= range)
+        if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost) )
         {
             foreach (GameObject enemyInList in enemyList) // Projde všechny nepøátele
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= range) // Pokud je nepøítel blízko vìže
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost) ) // Pokud je nepøítel blízko vìže
                     {
                         if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                         {
@@ -54,7 +58,7 @@ public class Tower : MonoBehaviour
             rb.MoveRotation(targetRotation);
 
             // Kontrola cooldownu støelby
-            if (coolDownNum <= 0)
+            if ( (coolDownNum - dorimeCoolDownBoost) <= 0)
             {
                 GameObject bulletToSpawn = bullet;
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
@@ -62,7 +66,7 @@ public class Tower : MonoBehaviour
                 Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity); // Spawne støelu
 
                 // Nastavení hodnot støely
-                bulletToSpawn.GetComponent<Bullet>().damage = damage;
+                bulletToSpawn.GetComponent<Bullet>().damage = damage + dorimeDamageBoost;
                 bulletToSpawn.GetComponent<Bullet>().armorDamage = armorDamage;
                 bulletToSpawn.GetComponent<Bullet>().slowPower = slowPower;
                 bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
@@ -80,4 +84,6 @@ public class Tower : MonoBehaviour
             else coolDownNum--;
         }
     }
+
+
 }
