@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class Tower : MonoBehaviour
 {
@@ -20,74 +20,89 @@ public class Tower : MonoBehaviour
     public int dorimeRangeBoost = 0;
     public int dorimeDamageBoost = 0;
 
-    [SerializeField] private AudioSource shootSound; // Zvuk st¯elby
-
-    // Odkaz na AudioManager
+    [SerializeField] private AudioSource shootSound;
     private AudioManager audioManager;
+
+    public int upgradeLevel = 0;
+    private const int maxUpgradeLevel = 4;
+
+    public string towerName; // üìå N√°zev vƒõ≈æe pro menu
 
     void Start()
     {
-        // ZÌsk·nÌ reference na AudioManager
         audioManager = FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
     {
-        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // list vöech enemy
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 
-        // Pokud vÏû nem· target, najde si novÈho
         if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost))
         {
-            foreach (GameObject enemyInList in enemyList) // Projde vöechny nep¯·tele
+            foreach (GameObject enemyInList in enemyList)
             {
-                if (enemyInList != null)
+                if (enemyInList != null && Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // Pokud je nep¯Ìtel blÌzko vÏûe
+                    if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                     {
-                        if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
-                        {
-                            targetEnemy = enemyInList; // NastavÌ novÈho targeta
-                            break;
-                        }
+                        targetEnemy = enemyInList;
+                        break;
                     }
                 }
             }
         }
         else
         {
-            // Rotace vÏûe k nep¯Ìteli
             Vector2 direction = (targetEnemy.GetComponent<EnemyMovement>().rb.transform.position - transform.position);
             Vector3 targetForwardDirection = direction;
             Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
             if (targetRotation.y > 0.5f) targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;
             rb.MoveRotation(targetRotation);
 
-            // Kontrola cooldownu st¯elby
             if ((coolDownNum - dorimeCoolDownBoost) <= 0)
             {
                 GameObject bulletToSpawn = bullet;
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
                 bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;
-                Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity); // Spawne st¯elu
+                Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
 
-                // NastavenÌ hodnot st¯ely
                 bulletToSpawn.GetComponent<Bullet>().damage = damage + dorimeDamageBoost;
                 bulletToSpawn.GetComponent<Bullet>().armorDamage = armorDamage;
                 bulletToSpawn.GetComponent<Bullet>().slowPower = slowPower;
                 bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
                 bulletToSpawn.GetComponent<Bullet>().rangeDamage = rangeDamage;
 
-                // P¯ehraje zvukov˝ efekt st¯elby s hlasitostÌ ovlivnÏnou AudioManagerem
                 if (shootSound != null && audioManager != null)
                 {
-                    shootSound.volume = audioManager.GetSFXVolume(); // NastavÌ hlasitost podle AudioManageru
+                    shootSound.volume = audioManager.GetSFXVolume();
                     shootSound.Play();
                 }
 
-                // Resetuje cooldown
                 coolDownNum = coolDown;
             }
             else coolDownNum--;
         }
     }
+
+    // üìå Kliknut√≠ na vƒõ≈æ ‚Üí otev≈ôe menu
+    
 }
+public class TowerClickHandler : MonoBehaviour
+{
+    private void OnMouseDown() // Tato metoda se vol√° p≈ôi kliknut√≠ na vƒõ≈æ
+    {
+        // Zjist√≠me, zda tento objekt m√° komponentu Tower
+        Tower tower = GetComponent<Tower>(); // Z√≠sk√°me komponentu Tower
+
+        if (tower != null) // Pokud komponenta existuje, pokraƒçujeme
+        {
+            TowerUpgradeMenu upgradeMenu = FindObjectOfType<TowerUpgradeMenu>();
+            if (upgradeMenu != null)
+            {
+                // Otev≈ôeme upgrade menu a p≈ôed√°me komponentu vƒõ≈æe
+                upgradeMenu.OpenUpgradeMenu(tower);
+            }
+        }
+    }
+}
+

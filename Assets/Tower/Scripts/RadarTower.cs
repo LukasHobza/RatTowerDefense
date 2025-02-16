@@ -1,48 +1,43 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RadarTower : MonoBehaviour
+public class RadarTower : Tower // âœ… DÄ›dÃ­ z Tower
 {
     public Sprite sprite;
-    public Rigidbody2D rb;
     private int coolDownNum = 0;
-    public int coolDown;
-    public int range;
     private GameObject targetEnemy;
 
-    public int dorimeRangeBoost = 0;
-
-    [SerializeField] private AudioSource ratdarSound;
-    private AudioManager audioManager; // Pøedpokládáme, že máš tento správce zvuku
+    [SerializeField] private AudioSource radarSound;
+    private AudioManager audioManager;
 
     void Start()
     {
-        // Získáme odkaz na AudioManager (pokud existuje)
-        audioManager = FindObjectOfType<AudioManager>(); // Pokud používáš singleton
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
     {
-        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // seznam všech nepøátel
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+
         if (coolDownNum <= 0)
         {
-            foreach (GameObject enemyInList in enemyList) // projede všechny nepøátele
+            foreach (GameObject enemyInList in enemyList)
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // pokud je nepøítel blízko vìže
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))
                     {
-                        targetEnemy = enemyInList; // pøiøadí nového nepøítele
+                        targetEnemy = enemyInList;
                         if (targetEnemy.gameObject.GetComponent<Enemy>().isInvisible)
                         {
                             targetEnemy.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
                             targetEnemy.gameObject.GetComponent<Enemy>().isInvisible = false;
 
-                            if (ratdarSound != null && audioManager != null)
+                            if (radarSound != null && audioManager != null)
                             {
-                                ratdarSound.volume = audioManager.GetSFXVolume(); // Nastaví hlasitost dle zvukového správce
-                                ratdarSound.Play(); // Pøehraje zvuk
+                                radarSound.volume = audioManager.GetSFXVolume();
+                                radarSound.Play();
                             }
                         }
                     }
@@ -55,4 +50,8 @@ public class RadarTower : MonoBehaviour
             coolDownNum--;
         }
     }
+
+    // ðŸ“Œ KliknutÃ­ na vÄ›Å¾ â†’ otevÅ™e menu
+   
 }
+

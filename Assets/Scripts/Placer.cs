@@ -9,9 +9,10 @@ public class TilemapPlacer : MonoBehaviour
     private int currentPrefabIndex = 0;
     public int[] prices;
     private int indexx;
+
     void Start()
     {
-        // tlacitka :)
+        // tlaèítka :)
         for (int i = 0; i < prefabs.Length; i++)
         {
             int index = i;
@@ -22,7 +23,7 @@ public class TilemapPlacer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // ceka na levy kliknuti
+        if (Input.GetMouseButtonDown(0)) // èeká na levé kliknutí
         {
             PlacePrefab();
         }
@@ -30,37 +31,42 @@ public class TilemapPlacer : MonoBehaviour
 
     void SelectPrefab(int index)
     {
-        currentPrefabIndex = index; // nastavi prefab indexem
+        currentPrefabIndex = index; // nastaví prefab index
         indexx = index;
         Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
     }
 
     void PlacePrefab()
     {
-        // zjisti kam se ma polozit
+        // zjistí kam se má položit
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // zjisti na jakej cell do tilemapy se ma polozit
+        // zjistí na jaký cell do tilemapy se má položit
         Vector3Int cellPosition = tilemap.WorldToCell(mousePosition);
 
         if (IsCellOccupied(cellPosition))
         {
-            Debug.Log("nn nemuzes uz tam neco je :(");
-            return; // exit jestli v cell uz neco je
+            Debug.Log("nn nemùžeš už tam nìco je :(");
+            return; // exit jestli v cell už nìco je
         }
 
-        // hlida jestli je cell prazdny a jestli ma hrac dost penez a neni gameover
+        // hlídá jestli je cell prázdný a jestli má hráè dost penìz a není game over
         if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx] && !HpManager.hM.over)
         {
-            // da prefab do cell
-            Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
+            // položí prefab do cell
+            GameObject placedTower = Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
+            placedTower.tag = "tower"; // Pøiøadí tag "TOWER" nové vìži
             CoinManager.cM.coin -= prices[indexx];
+
+            // Pøidáme detekci kliknutí na novou vìž
+            placedTower.AddComponent<TowerClickHandler>(); // Pøidá komponentu pro detekci kliknutí
         }
     }
 
     bool IsCellOccupied(Vector3Int cellPosition)
     {
-        // zjistuje jestli v cell neco je
+        // zjistí jestli v cell nìco je
         Collider2D[] colliders = Physics2D.OverlapCircleAll(tilemap.GetCellCenterWorld(cellPosition), 0.1f);
-        return colliders.Length > 0; // vrati true jestli v cell neco je
+        return colliders.Length > 0; // vrátí true, jestli v cell nìco je
     }
 }
+

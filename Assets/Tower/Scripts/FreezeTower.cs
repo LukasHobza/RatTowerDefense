@@ -1,61 +1,60 @@
-using System;
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-public class FreezeTower : MonoBehaviour
+public class FreezeTower : Tower
 {
     public Rigidbody2D rb;
     private int coolDownNum = 0;
     public int coolDown;
     public int range;
-    public int freezeDuration;
+    public int freezeDuration;  // SpecifickÃ¡ hodnota pro FreezeTower
     private GameObject targetEnemy;
 
     public int dorimeCoolDownBoost = 0;
     public int dorimeRangeBoost = 0;
 
-    [SerializeField] private AudioSource freezeSound; // Pøidaná promìnná pro zvukový efekt zmrazení
-    private AudioManager audioManager; // Pøidáme správce zvuku
+    [SerializeField] private AudioSource freezeSound; // Zvuk zmrazenÃ­
+    private AudioManager audioManager; // SprÃ¡vce zvuku
 
     void Start()
     {
-        // Získáme odkaz na AudioManager (pokud existuje)
-        audioManager = FindObjectOfType<AudioManager>(); // Pokud používáš singleton
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
     {
-        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // List všech nepøátel
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         if (coolDownNum <= 0)
         {
-            foreach (GameObject enemyInList in enemyList) // Projde všechny nepøátele
+            foreach (GameObject enemyInList in enemyList)
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // Pokud je nepøítel blízko vìže
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))
                     {
                         if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                         {
-                            targetEnemy = enemyInList; // Nastaví nového cílového nepøítele
+                            targetEnemy = enemyInList;
                             targetEnemy.GetComponent<EnemyMovement>().freezeDuration = freezeDuration;
 
-                            // Pøehraje zvukový efekt zmrazení s nastavenou hlasitostí
                             if (freezeSound != null && audioManager != null)
                             {
-                                freezeSound.volume = audioManager.GetSFXVolume(); // Nastaví hlasitost dle zvukového správce
-                                freezeSound.Play(); // Pøehraje zvuk
+                                freezeSound.volume = audioManager.GetSFXVolume();
+                                freezeSound.Play();
                             }
                         }
                     }
                 }
             }
-            coolDownNum = coolDown - dorimeCoolDownBoost; // Nastavení cooldownu s bonusem
+            coolDownNum = coolDown - dorimeCoolDownBoost;
         }
         else
         {
-            coolDownNum--; // Decrement cooldownu
+            coolDownNum--;
         }
     }
+
+    // KliknutÃ­ na vÄ›Å¾ â†’ otevÅ™e menu
+    
 }
