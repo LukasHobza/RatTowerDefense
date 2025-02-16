@@ -23,13 +23,12 @@ public class Tower : MonoBehaviour
     [SerializeField] private AudioSource shootSound;
     private AudioManager audioManager;
 
-<<<<<<< HEAD
+
     public int upgradeLevel = 0;
     private const int maxUpgradeLevel = 4;
 
     public string towerName; // 📌 Název věže pro menu
-=======
->>>>>>> 831ca966f119d45ec1365deeb2e995944756633a
+
 
     void Start()
     {
