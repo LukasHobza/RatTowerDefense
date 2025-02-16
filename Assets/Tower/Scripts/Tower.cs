@@ -25,6 +25,7 @@ public class Tower : MonoBehaviour
     // Odkaz na AudioManager
     private AudioManager audioManager;
 
+
     void Start()
     {
         // Získání reference na AudioManager

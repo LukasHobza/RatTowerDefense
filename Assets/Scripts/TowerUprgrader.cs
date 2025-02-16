@@ -11,6 +11,7 @@ public class TowerUpgrade : MonoBehaviour
 
     private int maxUpgradeLevel = 4; // Maximální úroveò vylepšení
 
+
     void Start()
     {
         // Skrytí menu pøi startu hry
