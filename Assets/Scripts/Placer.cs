@@ -10,6 +10,9 @@ public class TilemapPlacer : MonoBehaviour
     public int[] prices;
     private int indexx;
 
+    //LH
+    bool selected = false;
+
     void Start()
     {
         // tlaèítka :)
@@ -34,6 +37,9 @@ public class TilemapPlacer : MonoBehaviour
         currentPrefabIndex = index; // nastaví prefab index
         indexx = index;
         Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
+
+        //LH
+        selected = true;
     }
 
     void PlacePrefab()
@@ -49,8 +55,8 @@ public class TilemapPlacer : MonoBehaviour
             return; // exit jestli v cell už nìco je
         }
 
-        // hlídá jestli je cell prázdný a jestli má hráè dost penìz a není game over
-        if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx] && !HpManager.hM.over)
+        // hlídá jestli je cell prázdný a jestli má hráè dost penìz LH: a není game over a jestli bylo neco vybrano
+        if (tilemap.GetTile(cellPosition) == null && CoinManager.cM.coin >= prices[indexx] && !HpManager.hM.over && selected)
         {
             // položí prefab do cell
             GameObject placedTower = Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
@@ -59,6 +65,9 @@ public class TilemapPlacer : MonoBehaviour
 
             // Pøidáme detekci kliknutí na novou vìž
             placedTower.AddComponent<TowerClickHandler>(); // Pøidá komponentu pro detekci kliknutí
+
+            //LH:
+            selected = false;
         }
     }
 

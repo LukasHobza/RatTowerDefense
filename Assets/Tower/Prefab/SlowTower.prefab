@@ -183,10 +183,15 @@ MonoBehaviour:
   type: 2
   damage: 0
   armorDamage: 0
-  slowPower: 2
+  slowPower: 3
   slowDuration: 90
   rangeDamage: 0
+  dorimeCoolDownBoost: 0
+  dorimeRangeBoost: 0
+  dorimeDamageBoost: 0
   shootSound: {fileID: 6043175994226853664}
+  upgradeLevel: 0
+  towerName: 
 --- !u!82 &6043175994226853664
 AudioSource:
   m_ObjectHideFlags: 0
