@@ -17,6 +17,13 @@ public class FreezeTower : MonoBehaviour
     public int dorimeRangeBoost = 0;
 
     [SerializeField] private AudioSource freezeSound; // Pøidaná promìnná pro zvukový efekt zmrazení
+    private AudioManager audioManager; // Pøidáme správce zvuku
+
+    void Start()
+    {
+        // Získáme odkaz na AudioManager (pokud existuje)
+        audioManager = FindObjectOfType<AudioManager>(); // Pokud používáš singleton
+    }
 
     void FixedUpdate()
     {
@@ -34,20 +41,21 @@ public class FreezeTower : MonoBehaviour
                             targetEnemy = enemyInList; // Nastaví nového cílového nepøítele
                             targetEnemy.GetComponent<EnemyMovement>().freezeDuration = freezeDuration;
 
-                            // Pøehraje zvukový efekt zmrazení
-                            if (freezeSound != null)
+                            // Pøehraje zvukový efekt zmrazení s nastavenou hlasitostí
+                            if (freezeSound != null && audioManager != null)
                             {
-                                freezeSound.Play();
+                                freezeSound.volume = audioManager.GetSFXVolume(); // Nastaví hlasitost dle zvukového správce
+                                freezeSound.Play(); // Pøehraje zvuk
                             }
                         }
                     }
                 }
             }
-            coolDownNum = coolDown - dorimeCoolDownBoost;
+            coolDownNum = coolDown - dorimeCoolDownBoost; // Nastavení cooldownu s bonusem
         }
         else
         {
-            coolDownNum--;
+            coolDownNum--; // Decrement cooldownu
         }
     }
 }

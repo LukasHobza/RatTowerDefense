@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -24,20 +20,29 @@ public class Tower : MonoBehaviour
     public int dorimeRangeBoost = 0;
     public int dorimeDamageBoost = 0;
 
-    [SerializeField] private AudioSource shootSound; // Pøidaná promìnnou pro zvukový efekt støelby
+    [SerializeField] private AudioSource shootSound; // Zvuk støelby
+
+    // Odkaz na AudioManager
+    private AudioManager audioManager;
+
+    void Start()
+    {
+        // Získání reference na AudioManager
+        audioManager = FindObjectOfType<AudioManager>();
+    }
 
     void FixedUpdate()
     {
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // list všech enemy
 
         // Pokud vìž nemá target, najde si nového
-        if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost) )
+        if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost))
         {
             foreach (GameObject enemyInList in enemyList) // Projde všechny nepøátele
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost) ) // Pokud je nepøítel blízko vìže
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // Pokud je nepøítel blízko vìže
                     {
                         if (!enemyInList.gameObject.GetComponent<Enemy>().isInvisible)
                         {
@@ -58,7 +63,7 @@ public class Tower : MonoBehaviour
             rb.MoveRotation(targetRotation);
 
             // Kontrola cooldownu støelby
-            if ( (coolDownNum - dorimeCoolDownBoost) <= 0)
+            if ((coolDownNum - dorimeCoolDownBoost) <= 0)
             {
                 GameObject bulletToSpawn = bullet;
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
@@ -72,9 +77,10 @@ public class Tower : MonoBehaviour
                 bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
                 bulletToSpawn.GetComponent<Bullet>().rangeDamage = rangeDamage;
 
-                // Pøehraje zvukový efekt støelby
-                if (shootSound != null)
+                // Pøehraje zvukový efekt støelby s hlasitostí ovlivnìnou AudioManagerem
+                if (shootSound != null && audioManager != null)
                 {
+                    shootSound.volume = audioManager.GetSFXVolume(); // Nastaví hlasitost podle AudioManageru
                     shootSound.Play();
                 }
 
@@ -84,6 +90,4 @@ public class Tower : MonoBehaviour
             else coolDownNum--;
         }
     }
-
-
 }

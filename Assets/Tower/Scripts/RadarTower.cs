@@ -14,27 +14,35 @@ public class RadarTower : MonoBehaviour
     public int dorimeRangeBoost = 0;
 
     [SerializeField] private AudioSource ratdarSound;
+    private AudioManager audioManager; // Pøedpokládáme, že máš tento správce zvuku
+
+    void Start()
+    {
+        // Získáme odkaz na AudioManager (pokud existuje)
+        audioManager = FindObjectOfType<AudioManager>(); // Pokud používáš singleton
+    }
 
     void FixedUpdate()
     {
-        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");//list vsech enemy
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy"); // seznam všech nepøátel
         if (coolDownNum <= 0)
         {
-            foreach (GameObject enemyInList in enemyList)//projede vsechny enemaky
+            foreach (GameObject enemyInList in enemyList) // projede všechny nepøátele
             {
                 if (enemyInList != null)
                 {
-                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))//kdyz je nemy blizko veze
+                    if (Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost)) // pokud je nepøítel blízko vìže
                     {
-                        targetEnemy = enemyInList;//priradi noveho target enemaka
+                        targetEnemy = enemyInList; // pøiøadí nového nepøítele
                         if (targetEnemy.gameObject.GetComponent<Enemy>().isInvisible)
                         {
                             targetEnemy.gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
                             targetEnemy.gameObject.GetComponent<Enemy>().isInvisible = false;
 
-                            if (ratdarSound != null)
+                            if (ratdarSound != null && audioManager != null)
                             {
-                                ratdarSound.Play();
+                                ratdarSound.volume = audioManager.GetSFXVolume(); // Nastaví hlasitost dle zvukového správce
+                                ratdarSound.Play(); // Pøehraje zvuk
                             }
                         }
                     }
@@ -46,6 +54,5 @@ public class RadarTower : MonoBehaviour
         {
             coolDownNum--;
         }
-
     }
 }
