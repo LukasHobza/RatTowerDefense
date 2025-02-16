@@ -12,10 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Settiings.unity
     guid: e8fedd5fd897e2b40bfc8ccd7fd7b5d1
   - enabled: 1
-    path: Assets/Scenes/Map01.unity
+    path: Assets/Scenes/Map01 - Normal.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Game selector.unity
     guid: 3ab53632e2cd76c4a89959c10a440daa
+  - enabled: 1
+    path: Assets/Scenes/Map01 dificult selector.unity
+    guid: 27b7fb4e4755d8c438370993fda4af4e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
