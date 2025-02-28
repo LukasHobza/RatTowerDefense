@@ -37,6 +37,7 @@ public class Tower : MonoBehaviour
 
     void FixedUpdate()
     {
+        armorDamage = damage / 2;
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
 
         if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost))

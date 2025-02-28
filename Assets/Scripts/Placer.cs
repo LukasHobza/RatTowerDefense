@@ -36,7 +36,7 @@ public class TilemapPlacer : MonoBehaviour
     {
         currentPrefabIndex = index; // nastaví prefab index
         indexx = index;
-        Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
+        //Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
 
         //LH
         selected = true;
