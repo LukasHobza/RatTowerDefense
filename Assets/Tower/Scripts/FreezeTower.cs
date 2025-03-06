@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FreezeTower : Tower
 {
-    public Rigidbody2D rb;
+    //public Rigidbody2D rb;
     private int coolDownNum = 0;
-    public int coolDown;
-    public int range;
+    //public int coolDown;
+    //public int range;
     public int freezeDuration;  // Specifická hodnota pro FreezeTower
     private GameObject targetEnemy;
 
-    public int dorimeCoolDownBoost = 0;
-    public int dorimeRangeBoost = 0;
+    //public int dorimeCoolDownBoost = 0;
+    //public int dorimeRangeBoost = 0;
 
     [SerializeField] private AudioSource freezeSound; // Zvuk zmrazení
     private AudioManager audioManager; // Správce zvuku
