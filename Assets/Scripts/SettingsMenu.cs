@@ -22,6 +22,9 @@ public class SettingsMenu : MonoBehaviour
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
         }
 
+        // Inicializace hlasitosti bez spuštìní radaru
+        audioManager.InitializeVolume(sfxSlider.value);
+
         // Pøipojení metod pro zmìnu hlasitosti pøi zmìnì hodnoty na slideru
         musicSlider.onValueChanged.AddListener((value) =>
         {

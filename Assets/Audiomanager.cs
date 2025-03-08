@@ -22,4 +22,10 @@ public class AudioManager : MonoBehaviour
     {
         return sfxSounds.GetVolume();  // Opraveno, nyní vrací hodnotu z GetVolume() v SFXSounds
     }
+
+    // Inicializace hlasitosti bez spuštìní radaru
+    public void InitializeVolume(float volume)
+    {
+        sfxSounds.InitializeVolume(volume);
+    }
 }

@@ -15,9 +15,15 @@ public class SFXSounds : MonoBehaviour
         freezeSound.volume = volume;
     }
 
-    // Metoda pro získání aktuální hlasitosti
+    // Metoda pro získání aktuální hlasitosti (pouze pro støelbu)
     public float GetVolume()
     {
         return shootSound.volume;  // Vrací aktuální hlasitost
+    }
+
+    // Metoda pro inicializaci hlasitosti na specifikovanou hodnotu
+    public void InitializeVolume(float volume)
+    {
+        SetVolume(volume);  // Nastaví hlasitost všech zvukù
     }
 }
