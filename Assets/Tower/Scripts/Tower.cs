@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Tower : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
     public Rigidbody2D rb;
     private int coolDownNum = 0;
-    public int coolDown;
+    public int attackSpeed = 50;
     public int range;
     private GameObject targetEnemy;
     public int type;
@@ -20,19 +21,27 @@ public class Tower : MonoBehaviour
     public int dorimeRangeBoost = 0;
     public int dorimeDamageBoost = 0;
 
-    [SerializeField] private AudioSource shootSound;
-    private AudioManager audioManager;
-
+    [SerializeField] private AudioSource shootSound;  // Zvuk střely
+    [HideInInspector] private AudioManager audioManager;  // Odkaz na AudioManager
 
     public int upgradeLevel = 0;
     private const int maxUpgradeLevel = 4;
+    [HideInInspector] public int initialCost = 5;
+    public string towerName; // Název věže pro menu
 
-    public string towerName; // 📌 Název věže pro menu
-
+    private bool isShooting = false;  // Příznak pro kontrolu, zda věž čeká mezi střelami
 
     void Start()
     {
+        // Získání reference na AudioManager
         audioManager = FindObjectOfType<AudioManager>();
+        if (shootSound == null)
+        {
+            Debug.LogError("AudioSource pro shootSound není přiřazený!");
+        }
+
+        // Spuštění korutiny pro pravidelný výstřel
+        StartCoroutine(ShootWithDelay());
     }
 
     void FixedUpdate()
@@ -61,9 +70,27 @@ public class Tower : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(targetForwardDirection);
             if (targetRotation.y > 0.5f) targetRotation = Quaternion.Euler(0f, 0f, -180f) * targetRotation;
             rb.MoveRotation(targetRotation);
+        }
+    }
 
-            if ((coolDownNum - dorimeCoolDownBoost) <= 0)
+    // Funkce pro opětovné umožnění vystřelení (po prodeji věže nebo jiných událostech)
+    public void ResetShot()
+    {
+        StopCoroutine(ShootWithDelay());  // Zastaví aktuální korutinu
+        StartCoroutine(ShootWithDelay()); // Restartuje korutinu pro opětovné vystřelení
+    }
+
+    private IEnumerator ShootWithDelay()
+    {
+        while (true)  // Tato smyčka bude běžet neustále
+        {
+            if (targetEnemy != null)
             {
+                // Vystřelit střelu
+                Vector2 direction = (targetEnemy.GetComponent<EnemyMovement>().rb.transform.position - transform.position);
+                Vector3 targetForwardDirection = direction;
+
+                // Vytvoření střely
                 GameObject bulletToSpawn = bullet;
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
                 bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;
@@ -75,37 +102,44 @@ public class Tower : MonoBehaviour
                 bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
                 bulletToSpawn.GetComponent<Bullet>().rangeDamage = rangeDamage;
 
+                // Zvuk výstřelu
                 if (shootSound != null && audioManager != null)
                 {
+                    Debug.Log("Přehrávám zvuk výstřelu s hlasitostí: " + audioManager.GetSFXVolume());
                     shootSound.volume = audioManager.GetSFXVolume();
-                    shootSound.Play();
+                    shootSound.PlayOneShot(shootSound.clip);  // Použití PlayOneShot pro přehrání zvuku
+                }
+                else
+                {
+                    Debug.LogError("shootSound nebo audioManager je NULL!");
                 }
 
-                coolDownNum = coolDown;
+                // Čekáme 3 sekundy, než vystřelíme znovu
+                yield return new WaitForSeconds(3f);
             }
-            else coolDownNum--;
+            else
+            {
+                // Pokud není žádný cíl, čekáme, než nějaký najdeme
+                yield return null;
+            }
         }
     }
 
-    // 📌 Kliknutí na věž → otevře menu
-    
-}
-public class TowerClickHandler : MonoBehaviour
-{
-    private void OnMouseDown() // Tato metoda se volá při kliknutí na věž
+    // Kliknutí na věž → otevře menu
+    public void OnMouseDown()
     {
-        // Zjistíme, zda tento objekt má komponentu Tower
+        // Zjištění, zda objekt má komponentu Tower
         Tower tower = GetComponent<Tower>(); // Získáme komponentu Tower
 
         if (tower != null) // Pokud komponenta existuje, pokračujeme
         {
+            // Otevření menu pro upgrade věže
             TowerUpgradeMenu upgradeMenu = FindObjectOfType<TowerUpgradeMenu>();
             if (upgradeMenu != null)
             {
-                // Otevřeme upgrade menu a předáme komponentu věže
+                // Předáme komponentu věže do menu pro upgrade
                 upgradeMenu.OpenUpgradeMenu(tower);
             }
         }
     }
 }
-

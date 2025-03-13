@@ -7,9 +7,9 @@ public class RadarTower : Tower // ✅ Dědí z Tower
     public Sprite sprite;
     private int coolDownNum = 0;
     private GameObject targetEnemy;
-
+    
     [SerializeField] private AudioSource radarSound;
-    private AudioManager audioManager;
+    [HideInInspector] private AudioManager audioManager;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class RadarTower : Tower // ✅ Dědí z Tower
                     }
                 }
             }
-            coolDownNum = coolDown;
+            coolDownNum = attackSpeed;
         }
         else
         {

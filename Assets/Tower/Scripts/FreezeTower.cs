@@ -10,12 +10,12 @@ public class FreezeTower : Tower
     //public int range;
     public int freezeDuration;  // Specifická hodnota pro FreezeTower
     private GameObject targetEnemy;
-
+    
     //public int dorimeCoolDownBoost = 0;
     //public int dorimeRangeBoost = 0;
 
     [SerializeField] private AudioSource freezeSound; // Zvuk zmrazení
-    private AudioManager audioManager; // Správce zvuku
+    [HideInInspector] private AudioManager audioManager; // Správce zvuku
 
     void Start()
     {
@@ -47,7 +47,7 @@ public class FreezeTower : Tower
                     }
                 }
             }
-            coolDownNum = coolDown - dorimeCoolDownBoost;
+            coolDownNum = attackSpeed - dorimeCoolDownBoost;
         }
         else
         {

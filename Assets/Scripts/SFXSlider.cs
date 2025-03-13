@@ -1,29 +1,33 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SFXSounds : MonoBehaviour
 {
     [Header("AudioSources pro zvuky entit")]
-    [SerializeField] private AudioSource shootSound;     // Zvuk støely
-    [SerializeField] private AudioSource ratdarSound;    // Zvuk radarového zaøízení
-    [SerializeField] private AudioSource freezeSound;    // Zvuk zmraení
+    [SerializeField] private AudioSource shootSound;     // Zvuk stÅ™ely
+    [SerializeField] private AudioSource ratdarSound;    // Zvuk radarovÃ©ho zaÅ™Ã­zenÃ­
+    [SerializeField] private AudioSource freezeSound;    // Zvuk zmraÅ¾enÃ­
 
-    // Metoda pro nastavení hlasitosti všech zvukù entit
+    // Metoda pro nastavenÃ­ hlasitosti vÅ¡ech zvukÅ¯ entit
     public void SetVolume(float volume)
     {
+        Debug.Log("Nastavuji hlasitost na: " + volume);
         shootSound.volume = volume;
         ratdarSound.volume = volume;
         freezeSound.volume = volume;
     }
 
-    // Metoda pro získání aktuální hlasitosti (pouze pro støelbu)
+    // Metoda pro zÃ­skÃ¡nÃ­ aktuÃ¡lnÃ­ hlasitosti (pouze pro stÅ™elbu)
     public float GetVolume()
     {
-        return shootSound.volume;  // Vrací aktuální hlasitost
+        return shootSound.volume;  // VracÃ­ aktuÃ¡lnÃ­ hlasitost
     }
 
     // Metoda pro inicializaci hlasitosti na specifikovanou hodnotu
     public void InitializeVolume(float volume)
     {
-        SetVolume(volume);  // Nastaví hlasitost všech zvukù
+        SetVolume(volume);  // NastavÃ­ hlasitost vÅ¡ech zvukÅ¯
     }
+    
 }
+
+

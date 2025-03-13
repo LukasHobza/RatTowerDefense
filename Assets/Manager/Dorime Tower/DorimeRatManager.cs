@@ -64,7 +64,7 @@ public class DorimeRatManager : MonoBehaviour
                         {
                             towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().coolDownBoost;
                             towerInList.gameObject.GetComponent<FreezeTower>().dorimeRangeBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().rangeBoost;
-                            if (towerInList.gameObject.GetComponent<FreezeTower>().coolDown - towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost < towerMinCooldown) towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost = towerInList.gameObject.GetComponent<FreezeTower>().coolDown - towerMinCooldown;
+                            if (towerInList.gameObject.GetComponent<FreezeTower>().attackSpeed - towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost < towerMinCooldown) towerInList.gameObject.GetComponent<FreezeTower>().dorimeCoolDownBoost = towerInList.gameObject.GetComponent<FreezeTower>().attackSpeed - towerMinCooldown;
                         }
                         catch
                         {
@@ -85,7 +85,7 @@ public class DorimeRatManager : MonoBehaviour
                             towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().coolDownBoost;
                             towerInList.gameObject.GetComponent<Tower>().dorimeDamageBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().damageBoost;
                             towerInList.gameObject.GetComponent<Tower>().dorimeRangeBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().rangeBoost;
-                            if (towerInList.gameObject.GetComponent<Tower>().coolDown - towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost < towerMinCooldown) towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost = towerInList.gameObject.GetComponent<Tower>().coolDown - towerMinCooldown;
+                            if (towerInList.gameObject.GetComponent<Tower>().attackSpeed - towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost < towerMinCooldown) towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost = towerInList.gameObject.GetComponent<Tower>().attackSpeed - towerMinCooldown;
                         }
                         catch
                         {

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class TilemapPlacer : MonoBehaviour
+public class TilemapTowerPlacer : MonoBehaviour
 {
     public Tilemap tilemap; // ref na tilemapu
     public GameObject[] prefabs;
@@ -15,7 +15,7 @@ public class TilemapPlacer : MonoBehaviour
 
     void Start()
     {
-        // tlaèítka :)
+        // tlaèítka :(
         for (int i = 0; i < prefabs.Length; i++)
         {
             int index = i;
@@ -36,7 +36,7 @@ public class TilemapPlacer : MonoBehaviour
     {
         currentPrefabIndex = index; // nastaví prefab index
         indexx = index;
-        //Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
+        // Debug.Log("Selected prefab: " + prefabs[currentPrefabIndex].name);
 
         //LH
         selected = true;
@@ -77,5 +77,25 @@ public class TilemapPlacer : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(tilemap.GetCellCenterWorld(cellPosition), 0.1f);
         return colliders.Length > 0; // vrátí true, jestli v cell nìco je
     }
-}
 
+    // Tato komponenta se používá pro detekci kliknutí na vìže
+    public class TowerClickHandler : MonoBehaviour
+    {
+        private void OnMouseDown() // Tato metoda se volá pøi kliknutí na vìž
+        {
+            // Zjistíme, zda tento objekt má komponentu Tower
+            Tower tower = GetComponent<Tower>(); // Získáme komponentu Tower
+
+            if (tower != null) // Pokud komponenta existuje, pokraèujeme
+            {
+                // Otevøeme upgrade menu a pøedáme komponentu vìže
+                TowerUpgradeMenu upgradeMenu = FindObjectOfType<TowerUpgradeMenu>();
+                if (upgradeMenu != null)
+                {
+                    // Pøedáme vìž pro upgrade
+                    upgradeMenu.OpenUpgradeMenu(tower);
+                }
+            }
+        }
+    }
+}
