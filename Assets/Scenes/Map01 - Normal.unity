@@ -14742,7 +14742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 212.08167, y: 9.799011}
+  m_AnchoredPosition: {x: 212.08154, y: 9.799072}
   m_SizeDelta: {x: -1024.1543, y: -216.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1173426469
@@ -14800,6 +14800,8 @@ MonoBehaviour:
   upgradeLevelText: {fileID: 253495413}
   damageUpgradeButton: {fileID: 1810949932}
   rangeUpgradeButton: {fileID: 99510530}
+  freezeUpgradeButton: {fileID: 0}
+  speedUpgradeButton: {fileID: 1827134634}
   sellButton: {fileID: 516959801}
   closeButton: {fileID: 1085424779}
 --- !u!1 &1182608674

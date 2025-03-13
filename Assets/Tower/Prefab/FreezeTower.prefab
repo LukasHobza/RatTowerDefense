@@ -176,9 +176,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0947089d8d20a3a4fa15a0251946a793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
   rb: {fileID: 5502174604590041465}
-  coolDown: 250
+  attackSpeed: 5
   range: 5
+  type: 0
+  damage: 0
+  armorDamage: 0
+  slowPower: 0
+  slowDuration: 0
+  rangeDamage: 0
+  dorimeCoolDownBoost: 0
+  dorimeRangeBoost: 0
+  dorimeDamageBoost: 0
+  shootSound: {fileID: 0}
+  upgradeLevel: 0
+  initialCost: 5
+  towerName: 
   freezeDuration: 50
   freezeSound: {fileID: 3960238512088120009}
 --- !u!82 &3960238512088120009

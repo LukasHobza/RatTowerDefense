@@ -8,8 +8,8 @@ public class TowerUpgradeMenu : MonoBehaviour
     public Text upgradeLevelText; // Text pro úroveň a počet zbývajících vylepšení
     public Button damageUpgradeButton; // Tlačítko pro vylepšení síly (pro normální věže)
     public Button rangeUpgradeButton; // Tlačítko pro vylepšení dosahu
-    //public Button freezeUpgradeButton; // Tlačítko pro vylepšení zmražení (pro zmrazovací věže)
-   // public Button speedUpgradeButton; // Tlačítko pro vylepšení rychlosti útoku
+    public Button freezeUpgradeButton; // Tlačítko pro vylepšení zmražení (pro zmrazovací věže)
+    public Button speedUpgradeButton; // Tlačítko pro vylepšení rychlosti útoku
     public Button sellButton; // Tlačítko pro prodej věže
     public Button closeButton; // Tlačítko pro zavření menu
 
@@ -26,7 +26,7 @@ public class TowerUpgradeMenu : MonoBehaviour
         damageUpgradeButton.onClick.AddListener(() => UpgradeDamage());
         rangeUpgradeButton.onClick.AddListener(() => UpgradeRange());
         //freezeUpgradeButton.onClick.AddListener(() => UpgradeFreeze());
-       // speedUpgradeButton.onClick.AddListener(() => UpgradeSpeed());
+        speedUpgradeButton.onClick.AddListener(() => UpgradeSpeed());
         sellButton.onClick.AddListener(() => SellTower());
         closeButton.onClick.AddListener(() => CloseUpgradeMenu());
     }
@@ -42,10 +42,11 @@ public class TowerUpgradeMenu : MonoBehaviour
         upgradeLevelText.text = "Úroveň: " + tower.upgradeLevel + "/4"; // Zobrazení úrovně a zbývajících vylepšení
 
         // Zakázat tlačítka podle typu věže a počtu upgradů
-        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 3;
-        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 3;
+        
+        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 500;
+        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
         //freezeUpgradeButton.interactable = selectedTower is FreezeTower && selectedTower.upgradeLevel < 4 && selectedTower.freezeDuration < 3;
-       // speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 0;
+        speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2;
     }
 
     public void CloseUpgradeMenu()
@@ -55,7 +56,7 @@ public class TowerUpgradeMenu : MonoBehaviour
 
     private void UpgradeDamage()
     {
-        if (selectedTower.upgradeLevel < 4 && selectedTower.damage < 3)
+        if (selectedTower.upgradeLevel < 4 && selectedTower.damage < 500)
         {
             selectedTower.damage += 10; // Zvýšení síly normální věže
             selectedTower.upgradeLevel++; // Zvýšení úrovně
@@ -67,19 +68,20 @@ public class TowerUpgradeMenu : MonoBehaviour
 
     private void UpgradeRange()
     {
-        if (selectedTower.upgradeLevel < 4 && selectedTower.range < 3)
+        if (selectedTower.upgradeLevel < 4 && selectedTower.range < 500)
         {
             selectedTower.range += 5; // Zvýšení dosahu
             selectedTower.upgradeLevel++; // Zvýšení úrovně
             totalInvestment += upgradeCost; // Přičítání ceny upgradu
-            Debug.Log("Dosah věže zvýšen na: " + selectedTower.range);
+            Debug.Log(selectedTower.upgradeLevel < 4 && selectedTower.damage < 500);
+            Debug.Log("gsefgwsefwsef: " + selectedTower.upgradeLevel + ", " + selectedTower.range);
             UpdateUpgradeMenu(); // Aktualizace menu
         }
     }
 
-   /* private void UpgradeSpeed()
+    private void UpgradeSpeed()
     {
-        if (selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 0)
+        if (selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2)
         {
             selectedTower.attackSpeed -= 1; // Zvýšení rychlosti útoku (nižší hodnota = vyšší rychlost)
             selectedTower.upgradeLevel++; // Zvýšení úrovně
@@ -88,7 +90,7 @@ public class TowerUpgradeMenu : MonoBehaviour
             UpdateUpgradeMenu(); // Aktualizace menu
         }
     }
-   */
+   
     private void SellTower()
     {
         // Prodej věže (80% z celkové investice)
@@ -103,9 +105,9 @@ public class TowerUpgradeMenu : MonoBehaviour
     {
         // Aktualizace textu pro úroveň
         upgradeLevelText.text = "Úroveň: " + selectedTower.upgradeLevel + "/4";
-        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 3;
-        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 3;
+        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 500;
+        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
         //freezeUpgradeButton.interactable = selectedTower is FreezeTower && selectedTower.upgradeLevel < 4 && selectedTower.freezeUpgrades < 3;
-        //speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 0;
+        speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2;
     }
 }

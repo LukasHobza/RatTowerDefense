@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
     [SerializeField] private GameObject bullet;
     public Rigidbody2D rb;
     private int coolDownNum = 0;
-    public int attackSpeed = 50;
+    public int attackSpeed = 4;
     public int range;
     private GameObject targetEnemy;
     public int type;
@@ -51,6 +51,8 @@ public class Tower : MonoBehaviour
 
         if (targetEnemy == null || Vector2.Distance(targetEnemy.transform.position, rb.transform.position) >= (range + dorimeRangeBoost))
         {
+            targetEnemy = null;
+
             foreach (GameObject enemyInList in enemyList)
             {
                 if (enemyInList != null && Vector2.Distance(enemyInList.transform.position, rb.transform.position) <= (range + dorimeRangeBoost))
@@ -115,7 +117,7 @@ public class Tower : MonoBehaviour
                 }
 
                 // Čekáme 3 sekundy, než vystřelíme znovu
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds((float)attackSpeed);
             }
             else
             {

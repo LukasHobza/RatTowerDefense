@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5454617278818064110, guid: b646a2b84e621e84dbc02b32b2c32079, type: 3}
   rb: {fileID: 5502174604590041465}
-  coolDown: 120
+  attackSpeed: 6
   range: 5
   type: 3
   damage: 90
@@ -186,7 +186,13 @@ MonoBehaviour:
   slowPower: 0
   slowDuration: 0
   rangeDamage: 3
+  dorimeCoolDownBoost: 0
+  dorimeRangeBoost: 0
+  dorimeDamageBoost: 0
   shootSound: {fileID: 4478047146544411450}
+  upgradeLevel: 0
+  initialCost: 5
+  towerName: 
 --- !u!82 &4478047146544411450
 AudioSource:
   m_ObjectHideFlags: 0
