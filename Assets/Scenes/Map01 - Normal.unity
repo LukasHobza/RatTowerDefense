@@ -14146,7 +14146,7 @@ MonoBehaviour:
 
     Rat
 
-    200 coins'
+    50 coins'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01a0591db64a7ce419c426b680faa35a, type: 2}
   m_sharedMaterial: {fileID: 1054352385487765570, guid: 01a0591db64a7ce419c426b680faa35a, type: 2}
@@ -16074,7 +16074,7 @@ MonoBehaviour:
   - {fileID: 4506952514053077334, guid: 4c6beaf84c2035a4a95b1c5fda43cc7c, type: 3}
   - {fileID: 4506952514053077334, guid: 3572e8cc6a26be1458def4512ef27a9f, type: 3}
   - {fileID: 4506952514053077334, guid: e52da2c5f770d8347a1410b83a7c3191, type: 3}
-  prices: 050000000a000000140000001e0000001e000000c8000000
+  prices: 050000000a000000140000001e0000001e00000032000000
 --- !u!4 &1633884191
 Transform:
   m_ObjectHideFlags: 0

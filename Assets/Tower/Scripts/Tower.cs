@@ -86,6 +86,7 @@ public class Tower : MonoBehaviour
     {
         while (true)  // Tato smyčka bude běžet neustále
         {
+
             if (targetEnemy != null)
             {
                 // Vystřelit střelu

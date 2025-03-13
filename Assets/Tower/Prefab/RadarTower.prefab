@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
   rb: {fileID: 5502174604590041465}
-  attackSpeed: 5
+  attackSpeed: 150
   range: 4
   type: 0
   damage: 0
