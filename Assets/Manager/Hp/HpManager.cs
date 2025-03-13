@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class HpManager : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class HpManager : MonoBehaviour
         {
             over = true;
             Instantiate(gameOver);
+            StartCoroutine(DelayedAction());
         }
+    }
+
+    IEnumerator DelayedAction()
+    {
+        yield return new WaitForSeconds(5f); // Zpoždìní 10 sekund
+        SceneManager.LoadScene("Main Menu");
     }
 }
