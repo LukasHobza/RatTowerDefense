@@ -3,29 +3,56 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("Odkazy na skripty")]
-    public MusicSound musicSound;  // Odkaz na skript pro hudbu
-    public SFXSounds sfxSounds;    // Odkaz na skript pro zvuky entit
+    public MusicSound musicSound;
+    public SFXSounds sfxSounds;
 
-    // Metody pro nastavení hlasitosti hudby a zvukù entit
+    private void Start()
+    {
+        // Naèteme uložené hodnoty hlasitosti nebo nastavíme výchozí
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        // Inicializace hlasitosti pouze pokud objekty nejsou null
+        if (musicSound != null)
+        {
+            SetMusicVolume(musicVolume);
+        }
+        if (sfxSounds != null)
+        {
+            InitializeVolume(sfxVolume);
+        }
+    }
+
     public void SetMusicVolume(float volume)
     {
-        musicSound.SetVolume(volume);  // Nastavení hlasitosti hudby
+        if (musicSound != null)
+        {
+            musicSound.SetVolume(volume);
+            PlayerPrefs.SetFloat("MusicVolume", volume);
+            PlayerPrefs.Save();
+        }
     }
 
     public void SetSFXVolume(float volume)
     {
-        sfxSounds.SetVolume(volume);  // Nastavení hlasitosti zvukù entit
+        if (sfxSounds != null)
+        {
+            sfxSounds.SetVolume(volume);
+            PlayerPrefs.SetFloat("SFXVolume", volume);
+            PlayerPrefs.Save();
+        }
     }
 
-    // Getter pro aktuální hlasitost SFX
     public float GetSFXVolume()
     {
-        return sfxSounds.GetVolume();  // Opraveno, nyní vrací hodnotu z GetVolume() v SFXSounds
+        return sfxSounds != null ? sfxSounds.GetVolume() : 0f;
     }
 
-    // Inicializace hlasitosti bez spuštìní radaru
     public void InitializeVolume(float volume)
     {
-        sfxSounds.InitializeVolume(volume);
+        if (sfxSounds != null)
+        {
+            SetSFXVolume(volume);
+        }
     }
 }

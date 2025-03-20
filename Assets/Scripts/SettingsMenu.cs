@@ -38,4 +38,10 @@ public class SettingsMenu : MonoBehaviour
             PlayerPrefs.SetFloat("SFXVolume", value);
         });
     }
+
+    // Metoda pro získání aktuální hodnoty SFX slideru
+    public float GetSFXSliderValue()
+    {
+        return sfxSlider.value;
+    }
 }
