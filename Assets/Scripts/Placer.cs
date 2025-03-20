@@ -60,7 +60,6 @@ public class TilemapTowerPlacer : MonoBehaviour
         {
             // položí prefab do cell
             GameObject placedTower = Instantiate(prefabs[currentPrefabIndex], tilemap.GetCellCenterWorld(cellPosition), Quaternion.identity);
-            placedTower.tag = "tower"; // Pøiøadí tag "TOWER" nové vìži
             CoinManager.cM.coin -= prices[indexx];
 
             // Pøidáme detekci kliknutí na novou vìž

@@ -14118,7 +14118,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Effiency
+  m_text: Damage
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 01a0591db64a7ce419c426b680faa35a, type: 2}
   m_sharedMaterial: {fileID: 1054352385487765570, guid: 01a0591db64a7ce419c426b680faa35a, type: 2}
@@ -16687,7 +16687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7dcce0aed62004d820c341451143c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 800
+  coolDown: 500
   towerMinCooldown: 20
 --- !u!1 &1826507442
 GameObject:

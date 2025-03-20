@@ -13,4 +13,6 @@ public class DorimeRat : MonoBehaviour
     public int coolDownBoost;
     public int rangeBoost;
     public int damageBoost;
+
+    public string name;
 }

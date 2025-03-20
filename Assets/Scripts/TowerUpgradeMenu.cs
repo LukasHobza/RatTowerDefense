@@ -15,7 +15,7 @@ public class TowerUpgradeMenu : MonoBehaviour
 
     private Tower selectedTower; // Odkaz na vybranou věž
     private int totalInvestment; // Celková investice do věže (kupní cena + upgrady)
-    private const int upgradeCost = 8; // Cena za jeden upgrade
+    private const int upgradeCost = 10; // Cena za jeden upgrade
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class TowerUpgradeMenu : MonoBehaviour
         // Připojit funkce k tlačítkům
         damageUpgradeButton.onClick.AddListener(() => UpgradeDamage());
         rangeUpgradeButton.onClick.AddListener(() => UpgradeRange());
-        //freezeUpgradeButton.onClick.AddListener(() => UpgradeFreeze());
+
         speedUpgradeButton.onClick.AddListener(() => UpgradeSpeed());
         sellButton.onClick.AddListener(() => SellTower());
         closeButton.onClick.AddListener(() => CloseUpgradeMenu());
@@ -42,11 +42,9 @@ public class TowerUpgradeMenu : MonoBehaviour
         upgradeLevelText.text = "Úroveň: " + tower.upgradeLevel + "/4"; // Zobrazení úrovně a zbývajících vylepšení
 
         // Zakázat tlačítka podle typu věže a počtu upgradů
-        
-        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 500;
-        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
-        //freezeUpgradeButton.interactable = selectedTower is FreezeTower && selectedTower.upgradeLevel < 4 && selectedTower.freezeDuration < 3;
-        speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2;
+        damageUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && (selectedTower.upgradeLevel < 4 && selectedTower.damage < 500) && (selectedTower.name == "DefTower(Clone)" || selectedTower.name == "BazookaTower(Clone)");
+        rangeUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
+        speedUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && (selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2) && (selectedTower.name == "DefTower(Clone)" || selectedTower.name == "BazookaTower(Clone)" || selectedTower.name == "FreezeTower(Clone)" || selectedTower.name == "SlowTower(Clone)");
     }
 
     public void CloseUpgradeMenu()
@@ -58,6 +56,7 @@ public class TowerUpgradeMenu : MonoBehaviour
     {
         if (selectedTower.upgradeLevel < 4 && selectedTower.damage < 500)
         {
+            CoinManager.cM.coin -= upgradeCost;
             selectedTower.damage += 10; // Zvýšení síly normální věže
             selectedTower.upgradeLevel++; // Zvýšení úrovně
             totalInvestment += upgradeCost; // Přičítání ceny upgradu
@@ -70,10 +69,10 @@ public class TowerUpgradeMenu : MonoBehaviour
     {
         if (selectedTower.upgradeLevel < 4 && selectedTower.range < 500)
         {
+            CoinManager.cM.coin -= upgradeCost;
             selectedTower.range += 5; // Zvýšení dosahu
             selectedTower.upgradeLevel++; // Zvýšení úrovně
             totalInvestment += upgradeCost; // Přičítání ceny upgradu
-            Debug.Log(selectedTower.upgradeLevel < 4 && selectedTower.damage < 500);
             Debug.Log("gsefgwsefwsef: " + selectedTower.upgradeLevel + ", " + selectedTower.range);
             UpdateUpgradeMenu(); // Aktualizace menu
         }
@@ -83,6 +82,7 @@ public class TowerUpgradeMenu : MonoBehaviour
     {
         if (selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2)
         {
+            CoinManager.cM.coin -= upgradeCost;
             selectedTower.attackSpeed -= 1; // Zvýšení rychlosti útoku (nižší hodnota = vyšší rychlost)
             selectedTower.upgradeLevel++; // Zvýšení úrovně
             totalInvestment += upgradeCost; // Přičítání ceny upgradu
@@ -105,9 +105,10 @@ public class TowerUpgradeMenu : MonoBehaviour
     {
         // Aktualizace textu pro úroveň
         upgradeLevelText.text = "Úroveň: " + selectedTower.upgradeLevel + "/4";
-        damageUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.damage < 500;
-        rangeUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
-        //freezeUpgradeButton.interactable = selectedTower is FreezeTower && selectedTower.upgradeLevel < 4 && selectedTower.freezeUpgrades < 3;
-        speedUpgradeButton.interactable = selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2;
+
+        // Zakázat tlačítka podle typu věže a počtu upgradů
+        damageUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && (selectedTower.upgradeLevel < 4 && selectedTower.damage < 500) && (selectedTower.name == "DefTower(Clone)" || selectedTower.name == "BazookaTower(Clone)");
+        rangeUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && selectedTower.upgradeLevel < 4 && selectedTower.range < 500;
+        speedUpgradeButton.interactable = CoinManager.cM.coin >= upgradeCost && (selectedTower.upgradeLevel < 4 && selectedTower.attackSpeed > 2) && (selectedTower.name == "DefTower(Clone)" || selectedTower.name == "BazookaTower(Clone)" || selectedTower.name == "FreezeTower(Clone)" || selectedTower.name == "SlowTower(Clone)");
     }
 }

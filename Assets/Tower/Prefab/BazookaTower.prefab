@@ -192,7 +192,7 @@ MonoBehaviour:
   shootSound: {fileID: 4478047146544411450}
   upgradeLevel: 0
   initialCost: 5
-  towerName: 
+  towerName: bazooka
 --- !u!82 &4478047146544411450
 AudioSource:
   m_ObjectHideFlags: 0

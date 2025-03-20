@@ -21,8 +21,10 @@ public class DorimeRatManager : MonoBehaviour
     {
         GameObject[] towerList = GameObject.FindGameObjectsWithTag("tower");//list vsech vezi krome dorime
         GameObject[] dorimeList = GameObject.FindGameObjectsWithTag("dorime");
+
         if (coolDownNum <= 0)
         {
+            
             foreach (GameObject towerInList in towerList)
             {
                 try
@@ -82,6 +84,7 @@ public class DorimeRatManager : MonoBehaviour
 
                         try
                         {
+                            print("TEST");
                             towerInList.gameObject.GetComponent<Tower>().dorimeCoolDownBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().coolDownBoost;
                             towerInList.gameObject.GetComponent<Tower>().dorimeDamageBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().damageBoost;
                             towerInList.gameObject.GetComponent<Tower>().dorimeRangeBoost += dorimeInList.gameObject.GetComponent<DorimeRat>().rangeBoost;

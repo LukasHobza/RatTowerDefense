@@ -192,7 +192,7 @@ MonoBehaviour:
   shootSound: {fileID: -7066198035841572912}
   upgradeLevel: 0
   initialCost: 5
-  towerName: 
+  towerName: def
 --- !u!82 &-7066198035841572912
 AudioSource:
   m_ObjectHideFlags: 0

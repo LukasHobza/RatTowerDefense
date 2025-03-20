@@ -97,13 +97,18 @@ public class Tower : MonoBehaviour
                 GameObject bulletToSpawn = bullet;
                 bulletToSpawn.GetComponent<Bullet>().targetForwardDirection = targetForwardDirection;
                 bulletToSpawn.GetComponent<Bullet>().target = targetEnemy.transform;
-                Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
 
                 bulletToSpawn.GetComponent<Bullet>().damage = damage + dorimeDamageBoost;
                 bulletToSpawn.GetComponent<Bullet>().armorDamage = armorDamage;
                 bulletToSpawn.GetComponent<Bullet>().slowPower = slowPower;
                 bulletToSpawn.GetComponent<Bullet>().slowDuration = slowDuration;
                 bulletToSpawn.GetComponent<Bullet>().rangeDamage = rangeDamage;
+
+                Instantiate(bulletToSpawn, this.transform.position, Quaternion.identity);
+
+                
+
+                print(bulletToSpawn.GetComponent<Bullet>().damage);
 
                 // Zvuk výstřelu
                 if (shootSound != null && audioManager != null)

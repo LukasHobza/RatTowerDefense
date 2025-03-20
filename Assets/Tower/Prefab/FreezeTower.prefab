@@ -192,7 +192,7 @@ MonoBehaviour:
   shootSound: {fileID: 0}
   upgradeLevel: 0
   initialCost: 5
-  towerName: 
+  towerName: freeze
   freezeDuration: 50
   freezeSound: {fileID: 3960238512088120009}
 --- !u!82 &3960238512088120009

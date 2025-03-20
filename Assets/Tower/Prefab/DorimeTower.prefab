@@ -180,3 +180,4 @@ MonoBehaviour:
   coolDownBoost: 5
   rangeBoost: 1
   damageBoost: 5
+  name: dorime
